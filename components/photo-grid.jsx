@@ -25,3 +25,5 @@ const PhotoGrid = ({photos, numColumns, onEndReached}) => {
     />
   );
 };
+
+export default PhotoGrid;
