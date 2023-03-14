@@ -30,7 +30,7 @@ const reducer = (state, action) => {
         ...state,
         loading: false,
         error: false,
-        photos: [...state.photos, action.payload.photos],
+        photos: [...state.photos, ...action.payload.photos],
         nextPage: state.nextPage + 1,
       };
 

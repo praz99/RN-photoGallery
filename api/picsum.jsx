@@ -1,6 +1,6 @@
 const BASE_URL = 'https://picsum.photos/v2';
 
-const getList = async (page = 1) => {
+const getList = async ({page = 1}) => {
   const response = await fetch(`${BASE_URL}/list?page=${page}`);
   const photos = await response.json();
   return photos;

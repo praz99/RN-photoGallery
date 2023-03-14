@@ -1,12 +1,13 @@
-import React, {useCallback, useReducer} from 'react';
+import React, {useEffect, useReducer, useCallback} from 'react';
 import {ActivityIndicator, StyleSheet, Text, View} from 'react-native';
+
 import {getList} from './api/picsum';
 import PhotoGrid from './components/photo-grid';
 import {actionCreators, initialState, reducer} from './reducers/photos';
 
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [photos, nextPage, loading, error] = state;
+  const {photos, nextPage, loading, error} = state;
 
   const fetchPhotos = useCallback(async () => {
     dispatch(actionCreators.loading());
@@ -42,7 +43,9 @@ const App = () => {
     }
   }
 
-  return <PhotoGrid numColumns={3} photos={photos} />;
+  return (
+    <PhotoGrid numColumns={3} photos={photos} onEndReached={fetchPhotos} />
+  );
 };
 
 const styles = StyleSheet.create({
@@ -53,5 +56,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-
 export default App;
